@@ -86,7 +86,7 @@ spec:
       name: Fetch Application Base
       action: fetch:template
       input:
-        url: ./fast-api-skeleton/content
+        url: https://github.com/monkmantra/fastapi-application-template/tree/main/fast-api-skeleton/content
         targetPath: ./app-${{ parameters.app_name }}
         values:
           project_id: ${{ parameters.project_id }}
@@ -120,7 +120,7 @@ spec:
       name: Fetch Cloud Run Base
       action: fetch:template
       input:
-        url: ./cloud-run-skeleton/content
+        url: https://github.com/monkmantra/terraform-cloudrun-template/tree/main/cloud-run-skeleton/content
         targetPath: ./terraform-${{ parameters.app_name }}
         values:
           project_id: ${{ parameters.project_id }}
