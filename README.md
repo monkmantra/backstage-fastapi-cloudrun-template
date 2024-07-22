@@ -1,1 +1,1 @@
-# idp-backstage-integration-template
+# backstage-gcp-test-template
