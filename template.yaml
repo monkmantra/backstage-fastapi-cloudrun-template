@@ -1,17 +1,17 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: python-application-template
-  title: Python FastAPI Application Template
-  description: An example template that creates a simple python app deploying in cloud run.
+  name: python-fastapi-service-gcr-spanner
+  title: Python FastAPI Service + Google Cloud Run + Cloud Spanner
+  description: Create a Python FastAPI service running in Google Cloud Run with Cloud Spanner as the data store
   annotations:
     backstage.io/techdocs-ref: dir:.
   tags:
-    - backstage
-    - python-fast-api
+    - fast-api
+    - cloud-run
 spec:
-  owner: user:guest
-  type: website
+  owner: de-ims
+  type: service
 
   parameters:
     - title: Service / Application details
@@ -136,6 +136,7 @@ spec:
         values:
           project_id: ${{ parameters.project_id }}
           app_name: ${{ parameters.app_name }}
+          description: ${{ parameters.description }}
           spanner_db_name: ${{ parameters.spannerDatabaseName }}
 
     - id: publish-infra
