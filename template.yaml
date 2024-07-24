@@ -136,6 +136,7 @@ spec:
         values:
           project_id: ${{ parameters.project_id }}
           app_name: ${{ parameters.app_name }}
+          spanner_db_name: ${{ parameters.spannerDatabaseName }}
 
     - id: publish-infra
       name: Publish Infra
