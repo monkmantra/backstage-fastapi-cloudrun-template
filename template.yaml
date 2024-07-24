@@ -81,6 +81,17 @@ spec:
           ui:options:
             rows: 3
 
+    - title: Database details
+      required:
+        - spannerDatabaseName
+      properties:
+        spannerDatabaseName:
+          title: Spanner Database Name
+          type: string
+          description: Name of the cloud spanner database
+          ui:options:
+            rows: 3
+
   steps:
     - id: fetch-base-app
       name: Fetch Application Base
