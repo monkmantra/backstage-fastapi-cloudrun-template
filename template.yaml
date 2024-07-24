@@ -103,6 +103,7 @@ spec:
           project_id: ${{ parameters.project_id }}
           app_name: ${{ parameters.app_name }}
           description: ${{ parameters.description }}
+          spanner_db_name: ${{ parameters.spannerDatabaseName }}
 
     - id: publish-app
       name: Publish Application
