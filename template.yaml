@@ -128,6 +128,8 @@ spec:
           app_name: ${{ parameters.app_name }}
           description: ${{ parameters.description }}
           spanner_db_name: ${{ parameters.spannerDatabaseName }}
+          cost_center: ${{ parameters.costCenter }}
+          irisk_id: ${{ parameters.iRiskId }}
 
     - id: publish-infra
       name: Publish Infra
