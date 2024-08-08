@@ -147,8 +147,8 @@ spec:
       name: Starting GitHub action
       action: github:actions:dispatch
       input:
-        workflowId:  instance.yaml # ID of GitHub action WorkFlow
-        repoUrl: 'github.com?repo=${{ parameters.app_name }}-iac&owner=monkmantra'
+        workflowId: instance.yaml
+        repoUrl: github.com?repo=${{ parameters.app_name }}-iac&owner=monkmantra
         branchOrTagName: 'main'
 
     - id: register-app
