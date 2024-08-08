@@ -112,7 +112,7 @@ spec:
         allowedHosts: ['github.com']
         defaultBranch: main
         description: This is Python FastAPI app ${{ parameters.app_name }} in project ${{ parameters.project_id }}
-        repoUrl: github.com?owner=monkmantra&repo=app-${{ parameters.app_name }}
+        repoUrl: github.com?owner=monkmantra&repo=${{ parameters.app_name }}-app
         repoVisibility: public
         protectDefaultBranch: false
         sourcePath: ./app-${{ parameters.app_name }}
@@ -138,7 +138,7 @@ spec:
         allowedHosts: ['github.com']
         defaultBranch: main
         description: This is cloud run ${{ parameters.app_name }} in ${{ parameters.project_id }}
-        repoUrl: github.com?owner=monkmantra&repo=terraform-${{ parameters.app_name }}
+        repoUrl: github.com?owner=monkmantra&repo=${{ parameters.app_name }}-iac
         repoVisibility: public
         protectDefaultBranch: false
         sourcePath: ./terraform-${{ parameters.app_name }}
@@ -166,6 +166,6 @@ spec:
       - title: Open Application in catalog
         icon: catalog
         entityRef: ${{ steps['register-app'].output.entityRef }}
-      - title: Open Infra in catalog
-        icon: catalog
-        entityRef: ${{ steps['register-infra'].output.entityRef }}
+      # - title: Open Infra in catalog
+      #   icon: catalog
+      #   entityRef: ${{ steps['register-infra'].output.entityRef }}
