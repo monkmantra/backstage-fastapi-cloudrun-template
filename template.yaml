@@ -143,14 +143,6 @@ spec:
         protectDefaultBranch: false
         sourcePath: ./terraform-${{ parameters.app_name }}
 
-    - id: github-action
-      name: Starting GitHub action
-      action: github:actions:dispatch
-      input:
-        workflowId: instance.yaml
-        repoUrl: github.com?repo=${{ parameters.app_name }}-iac&owner=monkmantra
-        branchOrTagName: 'main'
-
     - id: register-app
       name: Register App
       action: catalog:register
