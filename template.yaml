@@ -89,6 +89,7 @@ spec:
           title: Spanner Database Name
           type: string
           description: Name of the cloud spanner database
+          ui:autofocus: true
           ui:options:
             rows: 3
 
