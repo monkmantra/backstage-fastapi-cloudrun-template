@@ -84,8 +84,8 @@ spec:
             rows: 3
 
     - title: Database details
-      # required:
-      #   - spannerDatabaseName
+      required:
+        - spannerDatabaseName
       properties:
         spannerDatabaseName:
           title: Spanner Database Name
@@ -96,21 +96,7 @@ spec:
             rows: 3
 
   steps:
-    - if: ${{ parameters.spannerDatabaseName == null }}
-      id: fetch-base-app
-      name: Fetch Application Base
-      action: fetch:template
-      input:
-        url: https://github.com/monkmantra/fastapi-application-template/tree/main/fast-api-skeleton/content
-        targetPath: ./app-${{ parameters.app_name }}
-        values:
-          project_id: ${{ parameters.project_id }}
-          app_name: ${{ parameters.app_name }}
-          description: ${{ parameters.description }}
-          spanner_db_name: ${{ parameters.app_name }}
-
-    - if: ${{ parameters.spannerDatabaseName != null }}
-      id: fetch-base-app
+    - id: fetch-base-app
       name: Fetch Application Base
       action: fetch:template
       input:
@@ -121,8 +107,6 @@ spec:
           app_name: ${{ parameters.app_name }}
           description: ${{ parameters.description }}
           spanner_db_name: ${{ parameters.spannerDatabaseName }}
-
-
 
     - id: publish-app
       name: Publish Application
@@ -136,23 +120,7 @@ spec:
         protectDefaultBranch: false
         sourcePath: ./app-${{ parameters.app_name }}
 
-    - if: ${{ parameters.spannerDatabaseName == null }}
-      id: fetch-base-infra
-      name: Fetch Infra Base
-      action: fetch:template
-      input:
-        url: https://github.com/monkmantra/terraform-cloudrun-template/tree/main/cloud-run-skeleton/content
-        targetPath: ./terraform-${{ parameters.app_name }}
-        values:
-          project_id: ${{ parameters.project_id }}
-          app_name: ${{ parameters.app_name }}
-          description: ${{ parameters.description }}
-          cost_center: ${{ parameters.costCenter }}
-          irisk_id: ${{ parameters.iRiskId }}
-          spanner_db_name: ${{ parameters.app_name }}
-
-    - if: ${{ parameters.spannerDatabaseName != null }}
-      id: fetch-base-infra
+    - id: fetch-base-infra
       name: Fetch Infra Base
       action: fetch:template
       input:
