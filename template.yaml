@@ -72,23 +72,25 @@ spec:
           title: Resource User Group
           type: string
           description: Members of this Genie group will have access to all the resources being provisioned (repo, pipelines, infrastructure)
+          default: cnf-gcpcl-user-group
           ui:options:
             rows: 3
         resourceAdminGroup:
           title: Resource Admin Group
           type: string
           description: Members of this Genie group will have administrative access to the resources being provisioned
+          default: cnf-gcpcl-admin-group
           ui:options:
             rows: 3
 
     - title: Database details
-      required:
-        - spannerDatabaseName
+      # required:
+      #   - spannerDatabaseName
       properties:
         spannerDatabaseName:
           title: Spanner Database Name
           type: string
-          description: Name of the cloud spanner database
+          description: Name of the cloud spanner database, if not provided, application name will be used.
           ui:autofocus: true
           ui:options:
             rows: 3
@@ -104,7 +106,11 @@ spec:
           project_id: ${{ parameters.project_id }}
           app_name: ${{ parameters.app_name }}
           description: ${{ parameters.description }}
+          if ${{ parameters.spannerDatabaseName == null }}
+          spanner_db_name: ${{ parameters.app_name }}
+          if ${{ parameters.spannerDatabaseName != null }}
           spanner_db_name: ${{ parameters.spannerDatabaseName }}
+
 
     - id: publish-app
       name: Publish Application
@@ -128,9 +134,12 @@ spec:
           project_id: ${{ parameters.project_id }}
           app_name: ${{ parameters.app_name }}
           description: ${{ parameters.description }}
-          spanner_db_name: ${{ parameters.spannerDatabaseName }}
           cost_center: ${{ parameters.costCenter }}
           irisk_id: ${{ parameters.iRiskId }}
+          if ${{ parameters.spannerDatabaseName == null }}
+          spanner_db_name: ${{ parameters.app_name }}
+          if ${{ parameters.spannerDatabaseName != null }}
+          spanner_db_name: ${{ parameters.spannerDatabaseName }}
 
     - id: publish-infra
       name: Publish Infra
