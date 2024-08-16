@@ -98,7 +98,7 @@ spec:
   steps:
     - id: fetch-base-app
       name: Fetch Application Base
-      if ${{ parameters.spannerDatabaseName == null }}
+      if: "${{ parameters.spannerDatabaseName == null }}"
       action: fetch:template
       input:
         url: https://github.com/monkmantra/fastapi-application-template/tree/main/fast-api-skeleton/content
@@ -110,7 +110,7 @@ spec:
           spanner_db_name: ${{ parameters.app_name }}
 
     - id: fetch-base-app
-      if ${{ parameters.spannerDatabaseName != null }}
+      if: "${{ parameters.spannerDatabaseName != null }}"
       name: Fetch Application Base
       action: fetch:template
       input:
@@ -138,7 +138,7 @@ spec:
 
     - id: fetch-base-cloud-run
       name: Fetch Cloud Run Base
-      if ${{ parameters.spannerDatabaseName == null }}
+      if: "${{ parameters.spannerDatabaseName == null }}"
       action: fetch:template
       input:
         url: https://github.com/monkmantra/terraform-cloudrun-template/tree/main/cloud-run-skeleton/content
@@ -153,7 +153,7 @@ spec:
 
     - id: fetch-base-cloud-run
       name: Fetch Cloud Run Base
-      if ${{ parameters.spannerDatabaseName != null }}
+      if: "${{ parameters.spannerDatabaseName != null }}"
       action: fetch:template
       input:
         url: https://github.com/monkmantra/terraform-cloudrun-template/tree/main/cloud-run-skeleton/content
