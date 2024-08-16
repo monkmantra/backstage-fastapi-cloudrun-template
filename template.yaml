@@ -96,7 +96,7 @@ spec:
             rows: 3
 
   steps:
-    - if: "${{ parameters.spannerDatabaseName == null }}"
+    - if: ${{ parameters.spannerDatabaseName == null }}
       id: fetch-base-app
       name: Fetch Application Base
       action: fetch:template
@@ -109,7 +109,7 @@ spec:
           description: ${{ parameters.description }}
           spanner_db_name: ${{ parameters.app_name }}
 
-    - if: "${{ parameters.spannerDatabaseName != null }}"
+    - if: ${{ parameters.spannerDatabaseName != null }}
       id: fetch-base-app
       name: Fetch Application Base
       action: fetch:template
@@ -136,9 +136,9 @@ spec:
         protectDefaultBranch: false
         sourcePath: ./app-${{ parameters.app_name }}
 
-    - if: "${{ parameters.spannerDatabaseName == null }}"
-      id: fetch-base-cloud-run
-      name: Fetch Cloud Run Base
+    - if: {{ parameters.spannerDatabaseName == null }}
+      id: fetch-base-infra
+      name: Fetch Infra Base
       action: fetch:template
       input:
         url: https://github.com/monkmantra/terraform-cloudrun-template/tree/main/cloud-run-skeleton/content
@@ -151,9 +151,9 @@ spec:
           irisk_id: ${{ parameters.iRiskId }}
           spanner_db_name: ${{ parameters.app_name }}
 
-    - if: "${{ parameters.spannerDatabaseName != null }}"
-      id: fetch-base-cloud-run
-      name: Fetch Cloud Run Base
+    - if: ${{ parameters.spannerDatabaseName != null }}
+      id: fetch-base-infra
+      name: Fetch Infra Base
       action: fetch:template
       input:
         url: https://github.com/monkmantra/terraform-cloudrun-template/tree/main/cloud-run-skeleton/content
