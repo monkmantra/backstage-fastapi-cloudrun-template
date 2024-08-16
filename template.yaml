@@ -136,7 +136,7 @@ spec:
         protectDefaultBranch: false
         sourcePath: ./app-${{ parameters.app_name }}
 
-    - if: {{ parameters.spannerDatabaseName == null }}
+    - if: ${{ parameters.spannerDatabaseName == null }}
       id: fetch-base-infra
       name: Fetch Infra Base
       action: fetch:template
