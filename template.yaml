@@ -97,6 +97,7 @@ spec:
 
   steps:
     - id: fetch-base-app
+      if ${{ parameters.spannerDatabaseName == null }}
       name: Fetch Application Base
       action: fetch:template
       input:
@@ -106,10 +107,21 @@ spec:
           project_id: ${{ parameters.project_id }}
           app_name: ${{ parameters.app_name }}
           description: ${{ parameters.description }}
-          if ${{ parameters.spannerDatabaseName == null }}
           spanner_db_name: ${{ parameters.app_name }}
-          if ${{ parameters.spannerDatabaseName != null }}
+
+    - id: fetch-base-app
+      if ${{ parameters.spannerDatabaseName != null }}
+      name: Fetch Application Base
+      action: fetch:template
+      input:
+        url: https://github.com/monkmantra/fastapi-application-template/tree/main/fast-api-skeleton/content
+        targetPath: ./app-${{ parameters.app_name }}
+        values:
+          project_id: ${{ parameters.project_id }}
+          app_name: ${{ parameters.app_name }}
+          description: ${{ parameters.description }}
           spanner_db_name: ${{ parameters.spannerDatabaseName }}
+
 
 
     - id: publish-app
@@ -125,6 +137,7 @@ spec:
         sourcePath: ./app-${{ parameters.app_name }}
 
     - id: fetch-base-cloud-run
+      if ${{ parameters.spannerDatabaseName == null }}
       name: Fetch Cloud Run Base
       action: fetch:template
       input:
@@ -136,9 +149,21 @@ spec:
           description: ${{ parameters.description }}
           cost_center: ${{ parameters.costCenter }}
           irisk_id: ${{ parameters.iRiskId }}
-          if ${{ parameters.spannerDatabaseName == null }}
           spanner_db_name: ${{ parameters.app_name }}
-          if ${{ parameters.spannerDatabaseName != null }}
+
+    - id: fetch-base-cloud-run
+      if ${{ parameters.spannerDatabaseName != null }}
+      name: Fetch Cloud Run Base
+      action: fetch:template
+      input:
+        url: https://github.com/monkmantra/terraform-cloudrun-template/tree/main/cloud-run-skeleton/content
+        targetPath: ./terraform-${{ parameters.app_name }}
+        values:
+          project_id: ${{ parameters.project_id }}
+          app_name: ${{ parameters.app_name }}
+          description: ${{ parameters.description }}
+          cost_center: ${{ parameters.costCenter }}
+          irisk_id: ${{ parameters.iRiskId }}
           spanner_db_name: ${{ parameters.spannerDatabaseName }}
 
     - id: publish-infra
