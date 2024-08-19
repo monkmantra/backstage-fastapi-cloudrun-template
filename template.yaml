@@ -72,14 +72,12 @@ spec:
           title: Resource User Group
           type: string
           description: Members of this Genie group will have access to all the resources being provisioned (repo, pipelines, infrastructure)
-          default: cnf-gcpcl-user-group
           ui:options:
             rows: 3
         resourceAdminGroup:
           title: Resource Admin Group
           type: string
           description: Members of this Genie group will have administrative access to the resources being provisioned
-          default: cnf-gcpcl-admin-group
           ui:options:
             rows: 3
 
